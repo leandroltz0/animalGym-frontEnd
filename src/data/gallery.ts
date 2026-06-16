@@ -1,0 +1,60 @@
+import type { GalleryItem } from '@/types'
+
+export const galleryItems: GalleryItem[] = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',
+    alt: 'Comunidad Animal',
+    category: 'COMUNIDAD',
+    title: 'LA MANADA',
+    description: 'Viví el entrenamiento acompañado por personas que comparten tus objetivos.',
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e2e?w=600&q=80',
+    alt: 'Powerlifting',
+    category: 'POWERLIFTING',
+    title: 'FUERZA PURA',
+    description: 'Entrená con intensidad y técnica.',
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=600&q=80',
+    alt: 'Clases Grupales',
+    category: 'CLASES',
+    title: 'ENERGÍA COLECTIVA',
+    description: 'Opciones para todos los niveles y objetivos.',
+  },
+  {
+    id: 4,
+    image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&q=80',
+    alt: 'Equipamiento',
+    category: 'EQUIPAMIENTO',
+    title: 'MÁXIMO NIVEL',
+    description: 'Todo lo que necesitás para progresar en cada etapa.',
+  },
+  {
+    id: 5,
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dbee7a5a0?w=800&q=80',
+    alt: 'Entrenamiento',
+    category: 'DISCIPLINA',
+    title: 'DÍA A DÍA',
+    description: 'Cada entrenamiento es un paso hacia tu mejor versión.',
+  },
+  {
+    id: 6,
+    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80',
+    alt: 'Spinning',
+    category: 'SPINNING',
+    title: 'CARDIO INTENSO',
+    description: 'Superá tus límites en cada clase.',
+  },
+  {
+    id: 7,
+    image: 'https://images.unsplash.com/photo-1574680096145-d05b4d7e8036?w=600&q=80',
+    alt: 'Funcional',
+    category: 'FUNCIONAL',
+    title: 'MOVIMIENTO TOTAL',
+    description: 'Entrenamiento completo para tu cuerpo.',
+  },
+]

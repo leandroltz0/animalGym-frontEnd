@@ -1,0 +1,362 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.schedule {
+  @include section-base;
+  padding: 120px 48px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include respond-to('md') {
+    padding: 80px 20px 60px;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(40px);
+
+    @include respond-to('md') {
+      margin-bottom: 48px;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    max-width: 1400px;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    align-items: end;
+
+    @include respond-to('lg') {
+      gap: 48px;
+    }
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include respond-to('md') {
+      order: 2;
+    }
+  }
+
+  &__text-title {
+    @include heading-font;
+    @include clamp(48px, 6vw, 72px);
+    letter-spacing: 3px;
+    color: $white;
+    line-height: 0.95;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(40px);
+
+    span {
+      color: $red;
+    }
+
+    @include respond-to('md') {
+      font-size: 42px;
+    }
+  }
+
+  &__text-desc {
+    font-family: $font-body;
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba($white, 0.7);
+    max-width: 440px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(40px);
+
+    @include respond-to('md') {
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+  }
+
+  &__blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+
+    @include respond-to('md') {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__block {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 28px;
+    background: rgba($dark-gray, 0.5);
+    border-radius: 16px;
+    border: 1.5px solid rgba($white, 0.06);
+    transition: all 0.35s $ease-smooth;
+    opacity: 0;
+    transform: translateX(-30px);
+
+    &:hover {
+      background: rgba($dark-gray, 0.8);
+      border-color: rgba($red, 0.3);
+      transform: translateX(8px);
+
+      .schedule__block-icon-ring {
+        border-color: rgba($red, 0.5);
+      }
+
+      .schedule__block-bar-fill {
+        background: $red;
+      }
+    }
+
+    @include respond-to('md') {
+      padding: 18px 20px;
+      gap: 14px;
+      grid-template-columns: 48px 1fr auto;
+    }
+  }
+
+  &__block-icon {
+    width: 56px;
+    height: 56px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    @include respond-to('md') {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  &__block-icon-ring {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1.5px solid rgba($white, 0.1);
+    display: grid;
+    place-items: center;
+    transition: border-color 0.35s $ease-smooth;
+
+    @include respond-to('md') {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  &__block-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__block-name {
+    font-family: $font-body;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: $white;
+
+    @include respond-to('md') {
+      font-size: 11px;
+    }
+  }
+
+  &__block-time {
+    @include heading-font;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: rgba($white, 0.6);
+
+    @include respond-to('md') {
+      font-size: 18px;
+    }
+  }
+
+  &__block-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba($white, 0.06);
+    border-radius: 2px;
+    margin-top: 4px;
+    overflow: hidden;
+
+    @include respond-to('md') {
+      display: none;
+    }
+  }
+
+  &__block-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: rgba($white, 0.25);
+    transition: background 0.35s $ease-smooth;
+  }
+
+  &__block-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  &__block-days {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba($white, 0.4);
+
+    @include respond-to('md') {
+      font-size: 9px;
+    }
+  }
+
+  &__block-tag {
+    font-family: $font-body;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $red;
+    padding: 3px 10px;
+    border-radius: $radius-sm;
+    background: rgba($red, 0.1);
+    border: 1px solid rgba($red, 0.2);
+
+    @include respond-to('md') {
+      font-size: 8px;
+      padding: 2px 8px;
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: $font-body;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $white;
+    background: $red;
+    border: none;
+    padding: 18px 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s $ease-smooth;
+    opacity: 0;
+    transform: translateY(20px);
+    width: fit-content;
+
+    &:hover {
+      background: $red-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba($red, 0.35);
+    }
+
+    @include respond-to('md') {
+      width: 100%;
+      justify-content: center;
+      padding: 16px 28px;
+    }
+  }
+
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    max-height: 620px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: $dark-gray;
+    opacity: 0;
+    transform: scale(0.96);
+
+    @include respond-to('md') {
+      order: 1;
+      aspect-ratio: 3/4;
+      max-height: 380px;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80&auto=format') center center / cover no-repeat;
+  }
+
+  &__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba($black, 0.15) 0%,
+      rgba($black, 0.3) 40%,
+      rgba($black, 0.6) 70%,
+      rgba($black, 0.85) 100%
+    );
+    z-index: 1;
+  }
+
+  &__image-badge {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @include respond-to('md') {
+      bottom: 24px;
+      left: 24px;
+    }
+  }
+
+  &__image-badge-title {
+    @include heading-font;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: $white;
+
+    @include respond-to('md') {
+      font-size: 22px;
+    }
+  }
+
+  &__image-badge-subtitle {
+    font-family: $font-body;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba($white, 0.7);
+  }
+}

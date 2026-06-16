@@ -1,0 +1,58 @@
+@use 'variables' as *;
+
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+  @media (max-width: $value) { @content; }
+}
+
+@mixin glassmorphism($bg: rgba(5, 5, 5, 0.85), $blur: 16px) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin section-divider {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba($red, 0.4) 50%, transparent 100%);
+  }
+}
+
+@mixin section-glow($top: 20%, $opacity: 0.08) {
+  &::after {
+    content: '';
+    position: absolute;
+    top: $top;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba($red, $opacity) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+@mixin heading-font {
+  font-family: $font-heading;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@mixin clamp($min, $preferred, $max) {
+  font-size: clamp($min, $preferred, $max);
+}
+
+@mixin section-base {
+  position: relative;
+  min-height: 100vh;
+  background: $black;
+  overflow: hidden;
+  @include section-divider;
+  @include section-glow;
+}

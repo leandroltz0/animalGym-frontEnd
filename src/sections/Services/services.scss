@@ -1,0 +1,263 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.services {
+  @include section-base;
+  padding: 100px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include respond-to('md') {
+    padding: 60px 16px 48px;
+  }
+
+  &__header {
+    text-align: right;
+    margin-bottom: 64px;
+    position: relative;
+    z-index: 10;
+    max-width: 1800px;
+    width: 100%;
+    margin-left: auto;
+    padding-right: 48px;
+
+    @include respond-to('md') {
+      margin-bottom: 48px;
+      padding-right: 20px;
+    }
+  }
+
+  &__stack-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1800px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 5;
+    padding-left: 64px;
+
+    @include respond-to('md') {
+      padding-left: 32px;
+    }
+  }
+
+  &__stack {
+    position: relative;
+    width: clamp(300px, 45vw, 480px);
+    height: clamp(480px, 70vh, 680px);
+    flex-shrink: 0;
+  }
+
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.9);
+    border: 1.5px solid rgba($white, 0.12);
+    color: $white;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 30;
+    transition: all 0.3s $ease-smooth;
+    @include glassmorphism(rgba(10, 10, 10, 0.9), 12px);
+
+    &:hover {
+      background: rgba($red, 0.95);
+      border-color: $red;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    &:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    &--prev {
+      left: 24px;
+
+      @include respond-to('md') {
+        left: 4px;
+      }
+    }
+
+    &--next {
+      right: 24px;
+      left: auto;
+
+      @include respond-to('md') {
+        right: 4px;
+      }
+    }
+
+    @include respond-to('md') {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  &__counter {
+    margin-top: 48px;
+    @include heading-font;
+    font-size: 18px;
+    letter-spacing: 5px;
+    color: rgba($white, 0.35);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+
+    @include respond-to('md') {
+      margin-top: 36px;
+      font-size: 16px;
+    }
+
+    &-current {
+      color: $white;
+      font-size: 26px;
+      display: inline-block;
+      min-width: 40px;
+
+      @include respond-to('md') {
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+.service-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  border: 1.5px solid transparent;
+  transition: box-shadow 0.4s $ease-smooth, border-color 0.4s $ease-smooth;
+
+  &--active {
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), 0 0 60px rgba($red, 0.2);
+    border-color: rgba($red, 0.45);
+  }
+
+  &:not(&--active) {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  &__img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s $ease-smooth;
+
+    .service-card--active & {
+      transform: scale(1.05);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba($black, 0.1) 0%,
+      rgba($black, 0.2) 30%,
+      rgba($black, 0.5) 55%,
+      rgba($black, 0.85) 75%,
+      rgba($black, 0.95) 100%
+    );
+    z-index: 1;
+    transition: background 0.5s $ease-smooth;
+
+    .service-card--active & {
+      background: linear-gradient(
+        180deg,
+        rgba($black, 0.05) 0%,
+        rgba($black, 0.15) 25%,
+        rgba($black, 0.4) 50%,
+        rgba($black, 0.75) 72%,
+        rgba($black, 0.95) 100%
+      );
+    }
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px 36px;
+    z-index: 2;
+    transform: translateY(20px);
+    opacity: 0.7;
+    transition: transform 0.5s $ease-smooth, opacity 0.5s $ease-smooth;
+
+    .service-card--active & {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @include respond-to('md') {
+      padding: 28px 24px;
+    }
+  }
+
+  &__number {
+    @include heading-font;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: $red;
+    margin-bottom: 10px;
+    opacity: 0.8;
+
+    @include respond-to('md') {
+      font-size: 12px;
+    }
+  }
+
+  &__name {
+    @include heading-font;
+    @include clamp(36px, 5.5vw, 52px);
+    letter-spacing: 2px;
+    color: $white;
+    line-height: 0.95;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    position: relative;
+
+    .service-card--active &::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 4px;
+      background: $red;
+      margin-top: 14px;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: expandLine 0.6s $ease-smooth 0.2s forwards;
+    }
+  }
+
+  &__desc {
+    font-family: $font-body;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba($white, 0.75);
+    max-width: 380px;
+
+    @include respond-to('md') {
+      font-size: 12px;
+    }
+  }
+}
+
+@keyframes expandLine {
+  to {
+    transform: scaleX(1);
+  }
+}

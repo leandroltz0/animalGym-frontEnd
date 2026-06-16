@@ -1,0 +1,379 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba($black, 0.92) 0%, rgba($black, 0.75) 30%, rgba($black, 0.4) 50%, rgba($black, 0.15) 65%, rgba($black, 0.3) 100%);
+      z-index: 2;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba($black, 0.5) 0%, transparent 15%, transparent 55%, rgba($black, 0.85) 100%);
+      z-index: 3;
+    }
+  }
+
+  &__bg-img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80&auto=format') center center / cover no-repeat;
+    filter: brightness(0.35) contrast(1.1) saturate(0.7);
+  }
+
+  &__red-glow {
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    width: 600px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, rgba($red, 0.15) 0%, rgba($red, 0.05) 40%, transparent 70%);
+    z-index: 1;
+    filter: blur(20px);
+  }
+
+  &__red-glow-top {
+    position: absolute;
+    top: 0;
+    right: 20%;
+    width: 400px;
+    height: 300px;
+    background: radial-gradient(ellipse at center, rgba($red, 0.1) 0%, transparent 70%);
+    z-index: 1;
+    filter: blur(30px);
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 0 60px;
+    width: 58%;
+    max-width: 880px;
+
+    @include respond-to('lg') {
+      padding: 0 32px;
+      width: 55%;
+    }
+
+    @include respond-to('md') {
+      width: 100%;
+      padding: 160px 24px 60px;
+      justify-content: flex-end;
+    }
+  }
+
+  &__eyebrow {
+    font-family: $font-body;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: $red;
+    margin-bottom: 12px;
+
+    @include respond-to('md') {
+      font-size: 13px;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__title {
+    @include heading-font;
+    @include clamp(88px, 10vw, 145px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    color: $white;
+    margin-bottom: 0;
+    filter: url(#distress);
+    text-transform: uppercase;
+
+    @include respond-to('md') {
+      @include clamp(56px, 16vw, 72px);
+      line-height: 0.9;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+  }
+
+  &__title-red {
+    @include heading-font;
+    @include clamp(76px, 9vw, 130px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    color: $red;
+    margin-bottom: 24px;
+    filter: url(#distress);
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    @include respond-to('md') {
+      @include clamp(50px, 14vw, 64px);
+      line-height: 0.9;
+      letter-spacing: 1.5px;
+      margin-bottom: 24px;
+      white-space: normal;
+    }
+  }
+
+  &__subtitle {
+    font-family: $font-body;
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba($white, 0.65);
+    max-width: 520px;
+    margin-bottom: 36px;
+
+    @include respond-to('md') {
+      font-size: 16px;
+      line-height: 1.5;
+      max-width: 100%;
+      margin-bottom: 36px;
+      color: rgba($white, 0.55);
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    @include respond-to('md') {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: 14px;
+    }
+  }
+
+  &__avatars-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 28px;
+
+    @include respond-to('md') {
+      margin-top: 32px;
+      gap: 14px;
+    }
+  }
+
+  &__avatars {
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid $black;
+    margin-left: -8px;
+    background: $dark-gray;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    @include respond-to('md') {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__avatar-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    &--1 { background: linear-gradient(135deg, #5a4030 0%, #7a5a45 100%); }
+    &--2 { background: linear-gradient(135deg, #3a4a5a 0%, #5a6a7a 100%); }
+    &--3 { background: linear-gradient(135deg, #4a3a5a 0%, #6a5a7a 100%); }
+  }
+
+  &__avatars-text {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $white;
+    line-height: 1.4;
+
+    @include respond-to('md') {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  &__side-number {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    @include respond-to('lg') {
+      display: none;
+    }
+  }
+
+  &__side-number-text {
+    @include heading-font;
+    font-size: 36px;
+    color: rgba($white, 0.2);
+    letter-spacing: 3px;
+  }
+
+  &__side-number-line {
+    width: 1px;
+    height: 50px;
+    background: rgba($white, 0.15);
+  }
+
+  &__bottom-right {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-10%);
+    z-index: 10;
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba($white, 0.55);
+    text-align: center;
+    line-height: 1.6;
+    white-space: nowrap;
+
+    @include respond-to('md') {
+      display: none;
+    }
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid rgba($white, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    animation: scrollBounce 2s ease-in-out infinite;
+    background: transparent;
+    color: rgba($white, 0.5);
+
+    @include respond-to('md') {
+      bottom: 20px;
+    }
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(5px); }
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: $font-body;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: $white;
+  background: $red;
+  border: none;
+  padding: 18px 30px;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    background: $red-hover;
+    transform: translateY(-1px);
+  }
+
+  @include respond-to('md') {
+    width: 100%;
+    justify-content: center;
+    padding: 20px 24px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: $font-body;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: $white;
+  background: transparent;
+  border: 1.5px solid rgba($white, 0.2);
+  padding: 18px 30px;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    border-color: rgba($white, 0.4);
+    transform: translateY(-1px);
+  }
+
+  @include respond-to('md') {
+    width: 100%;
+    justify-content: center;
+    padding: 20px 24px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+}

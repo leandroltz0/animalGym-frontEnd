@@ -1,0 +1,408 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: $navbar-height;
+  @include glassmorphism;
+  border-bottom: 1px solid rgba($white, 0.06);
+  transition: height 0.4s $ease-smooth, background 0.4s $ease-smooth, box-shadow 0.4s $ease-smooth, border-color 0.4s $ease-smooth;
+
+  &--scrolled {
+    height: $navbar-height-scrolled;
+    background: rgba($black, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
+    border-bottom-color: rgba($white, 0.03);
+  }
+
+  @include respond-to('lg') {
+    padding: 0 32px;
+  }
+
+  @include respond-to('md') {
+    padding: 0 20px;
+    height: $navbar-height-mobile;
+
+    &--scrolled {
+      height: $navbar-height-scrolled;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: $white;
+    transition: transform 0.3s $ease-smooth, filter 0.3s;
+    flex-shrink: 0;
+
+    &:hover {
+      transform: scale(1.03);
+      filter: drop-shadow(0 0 8px rgba($red, 0.25));
+    }
+  }
+
+  &__logo-icon {
+    width: 72px;
+    height: 72px;
+    background: url('/icon.png') center center / contain no-repeat;
+    transition: width 0.4s $ease-smooth, height 0.4s $ease-smooth;
+
+    .navbar--scrolled & {
+      width: 52px;
+      height: 52px;
+    }
+
+    @include respond-to('md') {
+      width: 56px;
+      height: 56px;
+
+      .navbar--scrolled & {
+        width: 44px;
+        height: 44px;
+      }
+    }
+  }
+
+  &__logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  &__logo-name {
+    @include heading-font;
+    font-size: 28px;
+    color: $white;
+    transition: font-size 0.4s $ease-smooth;
+
+    .navbar--scrolled & {
+      font-size: 22px;
+    }
+
+    @include respond-to('md') {
+      font-size: 20px;
+
+      .navbar--scrolled & {
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__logo-sub {
+    font-family: $font-body;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: $muted;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+
+    a {
+      position: relative;
+      font-family: $font-body;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: rgba($white, 0.55);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: $radius-md;
+      transition: color 0.25s, background 0.25s;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        width: 0;
+        height: 1.5px;
+        background: $red;
+        border-radius: 1px;
+        transition: width 0.3s $ease-smooth, left 0.3s $ease-smooth;
+      }
+
+      &:hover {
+        color: $white;
+        background: rgba($white, 0.04);
+      }
+
+      &:hover::after {
+        width: 60%;
+        left: 20%;
+      }
+
+      &.active {
+        color: $white;
+      }
+
+      &.active::after {
+        width: 60%;
+        left: 20%;
+        background: $red;
+      }
+    }
+
+    @include respond-to('lg') {
+      gap: 4px;
+
+      a {
+        font-size: 10px;
+        padding: 6px 10px;
+      }
+    }
+
+    @include respond-to('md') {
+      display: none;
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    margin-right: 10px;
+
+    @include respond-to('lg') {
+      display: none;
+    }
+  }
+
+  &__cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-body;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: $white;
+    background: $red;
+    border: none;
+    padding: 10px 22px;
+    border-radius: $radius-md;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.25s $ease-smooth, box-shadow 0.25s;
+    flex-shrink: 0;
+    animation: ctaPulse 3s ease-in-out infinite;
+
+    &:hover {
+      background: $red-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba($red, 0.35);
+      animation: none;
+    }
+
+    @include respond-to('md') {
+      display: none;
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: 1px solid rgba($white, 0.1);
+    border-radius: $radius-md;
+    cursor: pointer;
+    gap: 5px;
+    padding: 0;
+    transition: border-color 0.25s;
+
+    &:hover {
+      border-color: rgba($white, 0.25);
+    }
+
+    span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: $white;
+      border-radius: 1px;
+      transition: transform 0.35s $ease-smooth, opacity 0.25s;
+    }
+
+    &.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    &.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    @include respond-to('md') {
+      display: flex;
+    }
+  }
+}
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba($red, 0); }
+  50% { box-shadow: 0 0 0 6px rgba($red, 0.15); }
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba($black, 0.98);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s $ease-smooth;
+
+  &--open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    padding: 0 24px;
+
+    li {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s, transform 0.4s $ease-smooth;
+
+      .mobile-menu--open & {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      @include heading-font;
+      font-size: 36px;
+      letter-spacing: 3px;
+      color: rgba($white, 0.6);
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: $radius-lg;
+      transition: color 0.25s, background 0.25s;
+
+      &:hover,
+      &.active {
+        color: $white;
+        background: rgba($white, 0.04);
+      }
+    }
+  }
+
+  &__num {
+    font-family: $font-body;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: rgba($white, 0.25);
+    min-width: 24px;
+  }
+
+  &__bottom {
+    position: absolute;
+    bottom: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s 0.5s, transform 0.4s 0.5s $ease-smooth;
+
+    .mobile-menu--open & {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: 16px;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: $radius-lg;
+      border: 1px solid rgba($white, 0.1);
+      color: rgba($white, 0.6);
+      text-decoration: none;
+      transition: color 0.25s, border-color 0.25s, transform 0.25s;
+
+      &:hover {
+        color: $white;
+        border-color: rgba($red, 0.4);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-body;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $white;
+    background: $red;
+    padding: 14px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.25s;
+
+    &:hover {
+      background: $red-hover;
+      transform: translateY(-2px);
+    }
+  }
+}

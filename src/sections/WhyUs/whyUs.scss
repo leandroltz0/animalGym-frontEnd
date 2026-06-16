@@ -1,0 +1,229 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.why-us {
+  @include section-base;
+  padding: 120px 48px 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include respond-to('md') {
+    padding: 80px 20px 60px;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 10;
+    max-width: 1400px;
+    width: 100%;
+
+    @include respond-to('md') {
+      margin-bottom: 48px;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 64px;
+    max-width: 1400px;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    align-items: center;
+
+    @include respond-to('lg') {
+      gap: 48px;
+    }
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include respond-to('md') {
+      order: 1;
+    }
+  }
+
+  &__text-title {
+    @include heading-font;
+    @include clamp(32px, 4vw, 48px);
+    letter-spacing: 2px;
+    color: $white;
+    line-height: 1;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+
+    @include respond-to('md') {
+      font-size: 28px;
+    }
+  }
+
+  &__text-desc {
+    font-family: $font-body;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba($white, 0.7);
+    max-width: 400px;
+
+    @include respond-to('md') {
+      font-size: 14px;
+    }
+  }
+
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 24px;
+    overflow: hidden;
+    background: $dark-gray;
+
+    @include respond-to('md') {
+      order: 2;
+      aspect-ratio: 3/4;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.6s $ease-smooth, transform 0.6s $ease-smooth;
+
+    &--active {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba($black, 0.2) 0%,
+      rgba($black, 0.4) 50%,
+      rgba($black, 0.7) 100%
+    );
+    z-index: 1;
+  }
+
+  &__image-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  &__image-play-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba($red, 0.9);
+    display: grid;
+    place-items: center;
+    transition: transform 0.3s $ease-smooth, background 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      background: $red;
+    }
+  }
+
+  &__image-play-text {
+    font-family: $font-body;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $white;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include respond-to('md') {
+      order: 3;
+    }
+  }
+
+  &__nav-item {
+    position: relative;
+    padding: 20px 24px;
+    background: rgba($dark-gray, 0.5);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s $ease-smooth;
+    border: 1.5px solid transparent;
+
+    &:hover {
+      background: rgba($dark-gray, 0.8);
+      border-color: rgba($white, 0.08);
+    }
+
+    &--active {
+      background: $red;
+      border-color: $red;
+    }
+
+    @include respond-to('md') {
+      padding: 16px 20px;
+    }
+  }
+
+  &__nav-indicator {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    background: $red;
+    border-radius: 0 2px 2px 0;
+    transition: height 0.3s $ease-smooth;
+
+    .why-us__nav-item--active & {
+      height: 60%;
+    }
+  }
+
+  &__nav-item-text {
+    font-family: $font-body;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba($white, 0.6);
+    transition: color 0.3s;
+
+    .why-us__nav-item--active & {
+      color: $white;
+    }
+
+    @include respond-to('md') {
+      font-size: 11px;
+    }
+  }
+}

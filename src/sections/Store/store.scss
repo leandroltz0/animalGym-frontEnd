@@ -1,0 +1,598 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.store {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: $black;
+  padding: 0 48px;
+
+  @include respond-to('lg') {
+    padding: 0 32px;
+  }
+
+  @include respond-to('md') {
+    padding: 0 16px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba($white, 0.08) 50%, transparent 100%);
+    z-index: 2;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba($white, 0.08) 50%, transparent 100%);
+    z-index: 2;
+  }
+
+  &__hero {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+
+  &__hero-inner {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    display: flex;
+    align-items: stretch;
+
+    @include respond-to('md') {
+      height: 340px;
+    }
+  }
+
+  &__hero-carousel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 70%;
+    height: 100%;
+    border-radius: 0;
+    overflow: hidden;
+
+    @include respond-to('md') {
+      width: 75%;
+    }
+  }
+
+  &__hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+
+    &--active {
+      opacity: 1;
+    }
+  }
+
+  &__hero-slide-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__hero-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba($black, 0.5) 100%);
+  }
+
+  &__hero-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, $black 0%, $black 55%, rgba($black, 0.92) 75%, rgba($black, 0.5) 90%, transparent 100%);
+    z-index: 2;
+
+    @include respond-to('md') {
+      width: 50%;
+    }
+  }
+
+  &__hero-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    padding: 0 48px;
+    max-width: 440px;
+    height: 100%;
+
+    @include respond-to('md') {
+      padding: 0 24px;
+      max-width: 280px;
+      gap: 10px;
+    }
+  }
+
+  &__hero-title {
+    @include heading-font;
+    @include clamp(52px, 5.5vw, 80px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    color: $white;
+    text-transform: uppercase;
+
+    @include respond-to('md') {
+      font-size: clamp(32px, 8vw, 44px);
+    }
+  }
+
+  &__hero-title-red {
+    color: $red;
+  }
+
+  &__hero-desc {
+    font-family: $font-body;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba($white, 0.5);
+    max-width: 320px;
+
+    @include respond-to('md') {
+      font-size: 12px;
+      max-width: 240px;
+    }
+  }
+
+  &__hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $font-body;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $white;
+    background: $red;
+    border: none;
+    padding: 12px 24px;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    width: fit-content;
+
+    &:hover {
+      background: $red-hover;
+      transform: translateY(-1px);
+    }
+
+    @include respond-to('md') {
+      padding: 10px 18px;
+      font-size: 10px;
+    }
+  }
+
+  &__hero-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid rgba($white, 0.2);
+    background: rgba($black, 0.6);
+    backdrop-filter: blur(8px);
+    color: $white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, background 0.2s;
+    z-index: 10;
+
+    &:hover {
+      border-color: $red;
+      background: rgba($red, 0.25);
+    }
+
+    &--prev {
+      left: 20px;
+
+      @include respond-to('md') {
+        left: 10px;
+      }
+    }
+
+    &--next {
+      right: 20px;
+
+      @include respond-to('md') {
+        right: 10px;
+      }
+    }
+
+    @include respond-to('md') {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &__hero-dots {
+    position: absolute;
+    bottom: 20px;
+    left: calc(70% / 2);
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+
+    @include respond-to('md') {
+      left: calc(75% / 2);
+      bottom: 12px;
+    }
+  }
+
+  &__hero-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba($white, 0.25);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+
+    &--active {
+      background: $red;
+      transform: scale(1.2);
+    }
+  }
+
+  &__categories {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    padding: 36px 0;
+    margin: 0 auto;
+    max-width: 1400px;
+    scrollbar-width: none;
+    background: $black;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include respond-to('md') {
+      gap: 20px;
+      padding: 28px 0;
+    }
+  }
+
+  &__category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 110px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+
+      .store__category-img {
+        border-color: $red;
+        box-shadow: 0 0 20px rgba($red, 0.25);
+        transform: scale(1.06);
+      }
+    }
+
+    @include respond-to('md') {
+      min-width: 90px;
+    }
+  }
+
+  &__category-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid rgba($white, 0.12);
+    background-size: cover;
+    background-position: center;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s $ease-smooth;
+
+    @include respond-to('md') {
+      width: 72px;
+      height: 72px;
+    }
+  }
+
+  &__category-name {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $white;
+    text-align: center;
+
+    @include respond-to('md') {
+      font-size: 9px;
+    }
+  }
+
+  &__category-sub {
+    font-family: $font-body;
+    font-size: 9px;
+    color: rgba($white, 0.35);
+    text-align: center;
+  }
+
+  &__products {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 48px 80px;
+
+    @include respond-to('lg') {
+      padding: 48px 0 64px;
+    }
+
+    @include respond-to('md') {
+      padding: 40px 0 56px;
+    }
+  }
+
+  &__products-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    flex-wrap: nowrap;
+
+    @include respond-to('md') {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+  }
+
+  &__products-header-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex: 1;
+    min-width: 0;
+
+    @include respond-to('md') {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+
+  &__products-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  &__products-title {
+    @include heading-font;
+    @include clamp(40px, 4vw, 64px);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    color: $white;
+    text-transform: uppercase;
+  }
+
+  &__products-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    @include respond-to('md') {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      max-width: 100%;
+    }
+  }
+
+  &__filter {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba($white, 0.6);
+    background: transparent;
+    border: 1px solid rgba($white, 0.15);
+    padding: 8px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      color: $white;
+      border-color: rgba($white, 0.4);
+    }
+
+    &--active {
+      color: $white;
+      background: $red;
+      border-color: $red;
+    }
+  }
+
+  &__products-see-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: $font-body;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba($white, 0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  &__products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+
+    @include respond-to('lg') {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+    }
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  }
+
+  &__product-card {
+    background: #0a0a0a;
+    border: 1px solid rgba($white, 0.05);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.35s $ease-smooth, border-color 0.3s, box-shadow 0.35s;
+    position: relative;
+
+    &:hover {
+      transform: translateY(-3px);
+      border-color: rgba($red, 0.2);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+      .store__product-img::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__product-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background-size: cover;
+    background-position: center;
+    background-color: #111;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba($black, 0.4) 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  }
+
+  &__product-info {
+    padding: 14px 16px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    @include respond-to('md') {
+      padding: 10px 12px 8px;
+    }
+  }
+
+  &__product-name {
+    font-family: $font-body;
+    font-size: 13px;
+    font-weight: 600;
+    color: $white;
+    line-height: 1.3;
+
+    @include respond-to('md') {
+      font-size: 11px;
+    }
+  }
+
+  &__product-tag {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 600;
+    color: $red;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    letter-spacing: 0.3px;
+
+    &::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: $red;
+    }
+
+    @include respond-to('md') {
+      font-size: 9px;
+    }
+  }
+
+  &__product-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $white;
+    background: rgba($red, 0.08);
+    border: 1px solid rgba($red, 0.15);
+    padding: 11px;
+    margin: 0 16px 16px;
+    border-radius: $radius-md;
+    text-decoration: none;
+    transition: all 0.25s $ease-smooth;
+
+    &:hover {
+      background: $red;
+      border-color: $red;
+    }
+
+    @include respond-to('md') {
+      margin: 0 12px 12px;
+      padding: 9px;
+      font-size: 9px;
+    }
+  }
+}

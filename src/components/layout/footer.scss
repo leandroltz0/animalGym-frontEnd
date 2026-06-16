@@ -1,0 +1,280 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  position: relative;
+  width: 100%;
+  padding: 0 48px;
+  background: $black;
+
+  @include respond-to('lg') {
+    padding: 0 32px;
+  }
+
+  @include respond-to('md') {
+    padding: 0 20px;
+  }
+
+  &__body {
+    position: relative;
+    background: $black;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 0 48px;
+
+    @include respond-to('md') {
+      padding: 56px 0 36px;
+    }
+  }
+
+  &__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 72px;
+    margin-bottom: 56px;
+
+    @include respond-to('lg') {
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include respond-to('lg') {
+      grid-column: 1 / -1;
+    }
+
+    @include respond-to('md') {
+      align-items: center;
+      gap: 16px;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__logo-icon {
+    width: 52px;
+    height: 52px;
+    background: url('/icon.png') center center / contain no-repeat;
+  }
+
+  &__logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  &__logo-name {
+    @include heading-font;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: $white;
+  }
+
+  &__logo-sub {
+    font-family: $font-body;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: $muted;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  &__tagline {
+    @include heading-font;
+    @include clamp(22px, 2.5vw, 28px);
+    line-height: 1.2;
+    color: $white;
+    letter-spacing: 0.5px;
+
+    .accent {
+      color: $red;
+    }
+
+    @include respond-to('md') {
+      font-size: clamp(18px, 5vw, 24px);
+    }
+  }
+
+  &__desc {
+    font-family: $font-body;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba($white, 0.5);
+    max-width: 320px;
+
+    @include respond-to('md') {
+      max-width: 100%;
+      font-size: 12px;
+    }
+  }
+
+  &__nav-title,
+  &__info-title {
+    @include heading-font;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: $white;
+    margin-bottom: 20px;
+
+    @include respond-to('md') {
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include respond-to('md') {
+      align-items: center;
+      gap: 14px;
+    }
+
+    a {
+      font-family: $font-body;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba($white, 0.55);
+      text-decoration: none;
+      transition: color 0.2s, padding-left 0.2s;
+      display: inline-block;
+
+      &:hover {
+        color: $red;
+        padding-left: 4px;
+      }
+
+      @include respond-to('md') {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
+
+    @include respond-to('md') {
+      align-items: center;
+      gap: 18px;
+    }
+  }
+
+  &__info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__info-label {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $red;
+  }
+
+  &__info-text {
+    font-family: $font-body;
+    font-size: 13px;
+    color: rgba($white, 0.6);
+    line-height: 1.5;
+
+    @include respond-to('md') {
+      font-size: 13px;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    @include respond-to('md') {
+      justify-content: center;
+      gap: 14px;
+    }
+  }
+
+  &__social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba($white, 0.2);
+    background: $black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    color: rgba($white, 0.8);
+
+    &:hover {
+      border-color: $red;
+      background: rgba($red, 0.1);
+      transform: translateY(-2px);
+      color: $red;
+    }
+
+    @include respond-to('md') {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  &__bottom {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid rgba($white, 0.06);
+
+    @include respond-to('md') {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+      padding-top: 20px;
+    }
+  }
+
+  &__copyright,
+  &__bottom-tagline {
+    font-family: $font-body;
+    font-size: 12px;
+    color: rgba($white, 0.35);
+
+    @include respond-to('md') {
+      font-size: 11px;
+    }
+  }
+
+  &__bottom-tagline {
+    font-style: italic;
+    color: rgba($white, 0.3);
+  }
+}
