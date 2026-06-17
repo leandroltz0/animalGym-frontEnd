@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NAV_LINKS, WHATSAPP_URL } from '@/constants'
 import { useScrollSpy } from '@/hooks/useScrollSpy'
+import { useIsIPhone } from '@/hooks/useMediaQuery'
 import { SocialIcons } from '@/components/shared/SocialIcons'
 import { MobileMenu } from './MobileMenu'
 import './navbar.scss'
@@ -8,6 +9,9 @@ import './navbar.scss'
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const isIPhone = useIsIPhone()
   const activeId = useScrollSpy(['hero', 'servicios', 'horarios', 'tienda', 'galeria', 'contacto'])
 
   useEffect(() => {
@@ -15,6 +19,21 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (!isIPhone) return
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      const scrollingDown = currentScrollY > lastScrollY && currentScrollY > 100
+
+      setIsNavbarVisible(!scrollingDown)
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [isIPhone, lastScrollY])
 
   useEffect(() => {
     if (isMobileOpen) {
@@ -34,9 +53,16 @@ export function Navbar() {
     setIsMobileOpen(false)
   }
 
+  const navClasses = [
+    'navbar',
+    isScrolled && 'navbar--scrolled',
+    isIPhone && 'navbar--iphone',
+    isIPhone && !isNavbarVisible && 'navbar--hidden',
+  ].filter(Boolean).join(' ')
+
   return (
     <>
-      <nav className={`navbar ${isScrolled ? 'navbar--scrolled' : ''}`}>
+      <nav className={navClasses}>
         <a href="#hero" className="navbar__logo" onClick={(e) => handleNavClick(e, '#hero')}>
           <div className="navbar__logo-icon" />
           <div className="navbar__logo-text">

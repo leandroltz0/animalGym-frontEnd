@@ -25,6 +25,15 @@
     border-bottom-color: rgba($white, 0.03);
   }
 
+  &--iphone {
+    position: absolute;
+    transition: transform 0.4s $ease-smooth, height 0.4s $ease-smooth, background 0.4s $ease-smooth, box-shadow 0.4s $ease-smooth, border-color 0.4s $ease-smooth;
+  }
+
+  &--hidden {
+    transform: translateY(-100%);
+  }
+
   @include respond-to('lg') {
     padding: 0 32px;
   }

@@ -22,3 +22,14 @@ export function useIsMobile() {
 export function useIsTablet() {
   return useMediaQuery('(max-width: 1024px)')
 }
+
+export function useIsIPhone(): boolean {
+  const [isIPhone, setIsIPhone] = useState(false)
+
+  useEffect(() => {
+    const ua = navigator.userAgent
+    setIsIPhone(/iPhone/i.test(ua) && !/iPad/i.test(ua))
+  }, [])
+
+  return isIPhone
+}

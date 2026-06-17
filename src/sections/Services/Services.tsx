@@ -166,7 +166,7 @@ export function Services() {
               />
               <div className="service-card__overlay" />
               <div className="service-card__content">
-                <div className="service-card__number">{String(idx + 1).padStart(2, '0')}</div>
+                <div className="service-card__number">{idx + 1}</div>
                 <h3 className="service-card__name">{service.name}</h3>
                 <p className="service-card__desc">{service.description}</p>
               </div>
@@ -180,9 +180,9 @@ export function Services() {
       </div>
 
       <div className="services__counter">
-        <span className="services__counter-current">{String(activeIndex + 1).padStart(2, '0')}</span>
+        <span className="services__counter-current">{activeIndex + 1}</span>
         <span className="services__counter-sep">/</span>
-        <span className="services__counter-total">{String(services.length).padStart(2, '0')}</span>
+        <span className="services__counter-total">{services.length}</span>
       </div>
     </section>
   )
