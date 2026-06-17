@@ -206,11 +206,9 @@
     &--above,
     &--below {
       z-index: 1;
-      filter: blur(1px);
 
       &:hover {
         opacity: 0.6 !important;
-        filter: blur(0);
       }
     }
 
