@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { services } from '@/data/services'
 import { SectionLabel, SectionTitle } from '@/components/shared'
+import { useIsMobile } from '@/hooks/useMediaQuery'
 import './services.scss'
 
 export function Services() {
@@ -11,6 +12,7 @@ export function Services() {
   const stackRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
   const isFirstRender = useRef(true)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     if (!stackRef.current) return
@@ -20,33 +22,75 @@ export function Services() {
 
     const updatePositions = (animate = false) => {
       cards.forEach((card, idx) => {
-        const position = (idx - activeIndex + total) % total
-        const isActive = position === 0
-        const offset = position * 155
-        const scale = isActive ? 1 : Math.max(0.85, 1 - position * 0.05)
-        const zIndex = total - position
+        if (isMobile) {
+          // Modo mobile/tablet: desplazamiento horizontal (lógica original)
+          const position = (idx - activeIndex + total) % total
+          const isActive = position === 0
+          const offset = position * 155
+          const scale = isActive ? 1 : Math.max(0.85, 1 - position * 0.05)
+          const zIndex = total - position
 
-        if (animate) {
-          gsap.to(card, {
-            x: offset,
-            y: isActive ? -32 : 0,
-            scale,
-            opacity: 1,
-            zIndex,
-            duration: 0.65,
-            ease: 'power4.out',
-          })
+          if (animate) {
+            gsap.to(card, {
+              x: offset,
+              y: isActive ? -32 : 0,
+              scale,
+              opacity: 1,
+              zIndex,
+              duration: 0.65,
+              ease: 'power4.out',
+            })
+          } else {
+            gsap.set(card, {
+              x: offset,
+              y: isActive ? -32 : 0,
+              scale,
+              opacity: 1,
+              zIndex,
+            })
+          }
         } else {
-          gsap.set(card, {
-            x: offset,
-            y: isActive ? -32 : 0,
-            scale,
-            opacity: 1,
-            zIndex,
-          })
+          // Modo desktop: abanico fijo, solo cambia z-index/scale/opacity
+          const x = idx * 155
+
+          // Calcular distancia a la card activa
+          let distance: number
+          if (idx === activeIndex) {
+            distance = 0
+          } else if (idx > activeIndex) {
+            distance = idx - activeIndex
+          } else {
+            // Cards que ya pasaron, van al fondo
+            distance = total - activeIndex + idx
+          }
+
+          const isActive = distance === 0
+          const zIndex = isActive ? total : total - distance
+          const scale = isActive ? 1 : Math.max(0.85, 1 - distance * 0.05)
+          const opacity = isActive ? 1 : Math.max(0.4, 1 - distance * 0.15)
+
+          if (animate) {
+            gsap.to(card, {
+              x,
+              y: 0,
+              scale,
+              opacity,
+              zIndex,
+              duration: isActive ? 0.5 : 0.4,
+              ease: isActive ? 'power3.out' : 'power2.inOut',
+            })
+          } else {
+            gsap.set(card, {
+              x,
+              y: 0,
+              scale,
+              opacity,
+              zIndex,
+            })
+          }
         }
 
-        card.classList.toggle('service-card--active', isActive)
+        card.classList.toggle('service-card--active', isMobile ? (idx === activeIndex) : (idx === activeIndex))
       })
     }
 
@@ -56,20 +100,20 @@ export function Services() {
     } else {
       updatePositions(true)
     }
-  }, [activeIndex])
+  }, [activeIndex, isMobile])
 
   const goNext = () => {
     if (isAnimating) return
     setIsAnimating(true)
     setActiveIndex((prev) => (prev + 1) % services.length)
-    setTimeout(() => setIsAnimating(false), 700)
+    setTimeout(() => setIsAnimating(false), isMobile ? 700 : 600)
   }
 
   const goPrev = () => {
     if (isAnimating) return
     setIsAnimating(true)
     setActiveIndex((prev) => (prev - 1 + services.length) % services.length)
-    setTimeout(() => setIsAnimating(false), 700)
+    setTimeout(() => setIsAnimating(false), isMobile ? 700 : 600)
   }
 
   useEffect(() => {
