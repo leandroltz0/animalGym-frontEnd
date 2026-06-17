@@ -169,7 +169,8 @@
     overflow: hidden;
 
     @include respond-to('md') {
-      height: 180px;
+      order: 3;
+      height: 210px;
     }
   }
 
