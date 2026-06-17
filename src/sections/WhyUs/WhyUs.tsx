@@ -9,6 +9,7 @@ export function WhyUs() {
   const [activeIndex, setActiveIndex] = useState(0)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descRef = useRef<HTMLParagraphElement>(null)
+  const navRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!titleRef.current || !descRef.current) return
@@ -29,6 +30,22 @@ export function WhyUs() {
           { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', stagger: 0.1 }
         )
       },
+    })
+  }, [activeIndex])
+
+  useEffect(() => {
+    if (!navRef.current) return
+
+    const items = navRef.current.querySelectorAll('.why-us__nav-item')
+    items.forEach((item, idx) => {
+      const position = idx - activeIndex
+      gsap.to(item, {
+        y: position * 75,
+        scale: position === 0 ? 1 : 0.95,
+        opacity: position === 0 ? 1 : 0.4,
+        duration: 0.5,
+        ease: 'power2.out',
+      })
     })
   }, [activeIndex])
 
@@ -66,17 +83,22 @@ export function WhyUs() {
           </div>
         </div>
 
-        <div className="why-us__nav">
-          {whyUsItems.map((item, idx) => (
-            <div
-              key={item.id}
-              className={`why-us__nav-item ${idx === activeIndex ? 'why-us__nav-item--active' : ''}`}
-              onClick={() => setActiveIndex(idx)}
-            >
-              <div className="why-us__nav-indicator" />
-              <span className="why-us__nav-item-text">{item.title}</span>
-            </div>
-          ))}
+        <div className="why-us__nav" ref={navRef}>
+          {whyUsItems.map((item, idx) => {
+            const position = idx - activeIndex
+            return (
+              <div
+                key={item.id}
+                className={`why-us__nav-item ${
+                  position === 0 ? 'why-us__nav-item--active' :
+                  position < 0 ? 'why-us__nav-item--above' : 'why-us__nav-item--below'
+                }`}
+                onClick={() => setActiveIndex(idx)}
+              >
+                <span className="why-us__nav-item-text">{item.title}</span>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
