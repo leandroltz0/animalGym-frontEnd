@@ -124,7 +124,10 @@ export function Schedule() {
                     </div>
                   </div>
                   <div className="schedule__block-info">
-                    <span className="schedule__block-name">{block.name}</span>
+                    <div className="schedule__block-name-row">
+                      <span className="schedule__block-name">{block.name}</span>
+                      <span className="schedule__block-days">{block.days}</span>
+                    </div>
                     <span className="schedule__block-time">{block.time}</span>
                     <div className="schedule__block-bar">
                       <div
@@ -132,10 +135,6 @@ export function Schedule() {
                         style={{ width: block.barWidth }}
                       />
                     </div>
-                  </div>
-                  <div className="schedule__block-meta">
-                    <span className="schedule__block-days">{block.days}</span>
-                    <span className="schedule__block-tag">{block.tag}</span>
                   </div>
                 </div>
               )

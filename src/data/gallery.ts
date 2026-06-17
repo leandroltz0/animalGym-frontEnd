@@ -11,7 +11,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e2e?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&q=80',
     alt: 'Powerlifting',
     category: 'POWERLIFTING',
     title: 'FUERZA PURA',
@@ -35,7 +35,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 5,
-    image: 'https://images.unsplash.com/photo-1517836357463-d25dbee7a5a0?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80',
     alt: 'Entrenamiento',
     category: 'DISCIPLINA',
     title: 'DÍA A DÍA',
@@ -51,7 +51,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 7,
-    image: 'https://images.unsplash.com/photo-1574680096145-d05b4d7e8036?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=600&q=80',
     alt: 'Funcional',
     category: 'FUNCIONAL',
     title: 'MOVIMIENTO TOTAL',

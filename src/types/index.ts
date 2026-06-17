@@ -17,7 +17,6 @@ export interface ScheduleBlock {
   name: string
   time: string
   days: string
-  tag: string
   barWidth: string
   icon: 'sun' | 'sunset' | 'moon' | 'star'
 }
@@ -28,6 +27,13 @@ export interface Product {
   category: string
   tag: string
   image: string
+  price: number
+  originalPrice?: number
+  description: string
+  images: string[]
+  sizes?: string[]
+  rating: number
+  reviews: number
 }
 
 export interface StoreCategory {

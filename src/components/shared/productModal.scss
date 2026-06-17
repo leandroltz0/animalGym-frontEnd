@@ -1,0 +1,459 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.product-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+
+  @include respond-to('md') {
+    padding: 0;
+    align-items: flex-end;
+  }
+}
+
+.product-modal {
+  position: relative;
+  background: #0a0a0a;
+  border: 1px solid rgba($white, 0.08);
+  border-radius: 20px;
+  max-width: 920px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.4s $ease-smooth;
+
+  @include respond-to('md') {
+    border-radius: 20px 20px 0 0;
+    max-height: 85vh;
+  }
+
+  &__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba($white, 0.15);
+    background: rgba($black, 0.8);
+    backdrop-filter: blur(8px);
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+
+    &:hover {
+      border-color: $red;
+      background: rgba($red, 0.2);
+    }
+
+    @include respond-to('md') {
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__gallery {
+    position: relative;
+    padding: 0;
+    border-right: 1px solid rgba($white, 0.05);
+
+    @include respond-to('md') {
+      border-right: none;
+    }
+  }
+
+  &__main-image {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 20px 0 0 0;
+
+    @include respond-to('md') {
+      border-radius: 20px 20px 0 0;
+      aspect-ratio: 4/3;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__thumbnails {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  &__thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+    padding: 0;
+    background: none;
+
+    &--active {
+      border-color: $red;
+    }
+
+    &:hover {
+      border-color: rgba($white, 0.4);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include respond-to('md') {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  &__details {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include respond-to('md') {
+      padding: 24px 20px;
+      gap: 12px;
+    }
+  }
+
+  &__tag {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: $red;
+  }
+
+  &__name {
+    @include heading-font;
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: $white;
+    text-transform: uppercase;
+    line-height: 1.1;
+
+    @include respond-to('md') {
+      font-size: 20px;
+    }
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__stars {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+  }
+
+  &__star--filled {
+    fill: $red;
+
+    path {
+      fill: $red;
+    }
+  }
+
+  &__star--empty {
+    fill: rgba($white, 0.12);
+
+    path {
+      fill: rgba($white, 0.12);
+    }
+  }
+
+  &__rating-value {
+    font-family: $font-body;
+    font-size: 14px;
+    font-weight: 700;
+    color: $white;
+  }
+
+  &__reviews-count {
+    font-family: $font-body;
+    font-size: 12px;
+    color: rgba($white, 0.45);
+  }
+
+  &__price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__price {
+    @include heading-font;
+    font-size: 28px;
+    color: $white;
+    letter-spacing: 1px;
+
+    @include respond-to('md') {
+      font-size: 24px;
+    }
+  }
+
+  &__original-price {
+    font-family: $font-body;
+    font-size: 16px;
+    color: rgba($white, 0.35);
+    text-decoration: line-through;
+
+    @include respond-to('md') {
+      font-size: 14px;
+    }
+  }
+
+  &__discount {
+    font-family: $font-body;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: $white;
+    background: $red;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    font-family: $font-body;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba($white, 0.65);
+
+    @include respond-to('md') {
+      font-size: 13px;
+    }
+  }
+
+  &__sizes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__sizes-label {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba($white, 0.5);
+  }
+
+  &__sizes-list {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__size {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    border: 1.5px solid rgba($white, 0.15);
+    background: transparent;
+    color: rgba($white, 0.7);
+    font-family: $font-body;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      border-color: rgba($white, 0.4);
+      color: $white;
+    }
+
+    &--active {
+      border-color: $red;
+      background: rgba($red, 0.15);
+      color: $white;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: $font-body;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: $white;
+    background: $red;
+    border: none;
+    padding: 16px 24px;
+    border-radius: $radius-md;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 4px;
+
+    &:hover {
+      background: $red-hover;
+      transform: translateY(-1px);
+    }
+
+    @include respond-to('md') {
+      padding: 14px 20px;
+      font-size: 12px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 4px;
+
+    span {
+      font-family: $font-body;
+      font-size: 11px;
+      color: rgba($white, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      &::before {
+        content: '✓';
+        color: rgba($white, 0.5);
+        font-size: 10px;
+      }
+    }
+  }
+
+  &__reviews-section {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba($white, 0.06);
+    overflow: hidden;
+  }
+
+  &__reviews-title {
+    font-family: $font-body;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba($white, 0.4);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  &__reviews-track {
+    display: flex;
+    gap: 16px;
+    animation: scroll-reviews 25s linear infinite;
+    width: max-content;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  &__review-card {
+    flex: 0 0 220px;
+    background: rgba($white, 0.03);
+    border: 1px solid rgba($white, 0.06);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__review-stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  &__review-star--filled {
+    fill: $red;
+    path {
+      fill: $red;
+    }
+  }
+
+  &__review-star--empty {
+    fill: rgba($white, 0.12);
+    path {
+      fill: rgba($white, 0.12);
+    }
+  }
+
+  &__review-text {
+    font-family: $font-body;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba($white, 0.6);
+    margin: 0;
+  }
+
+  &__review-name {
+    font-family: $font-body;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba($white, 0.4);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes scroll-reviews {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

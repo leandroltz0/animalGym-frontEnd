@@ -106,10 +106,10 @@
 
   &__block {
     display: grid;
-    grid-template-columns: 56px 1fr auto;
+    grid-template-columns: 56px 1fr;
     align-items: center;
     gap: 20px;
-    padding: 22px 28px;
+    padding: 24px 28px;
     background: rgba($dark-gray, 0.5);
     border-radius: 16px;
     border: 1.5px solid rgba($white, 0.06);
@@ -120,7 +120,7 @@
     &:hover {
       background: rgba($dark-gray, 0.8);
       border-color: rgba($red, 0.3);
-      transform: translateX(8px);
+      transform: translateX(4px);
 
       .schedule__block-icon-ring {
         border-color: rgba($red, 0.5);
@@ -134,7 +134,7 @@
     @include respond-to('md') {
       padding: 18px 20px;
       gap: 14px;
-      grid-template-columns: 48px 1fr auto;
+      grid-template-columns: 48px 1fr;
     }
   }
 
@@ -170,6 +170,12 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+  }
+
+  &__block-name-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__block-name {
@@ -216,41 +222,15 @@
     transition: background 0.35s $ease-smooth;
   }
 
-  &__block-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-  }
-
   &__block-days {
     font-family: $font-body;
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba($white, 0.4);
+    letter-spacing: 1px;
+    color: rgba($white, 0.35);
 
     @include respond-to('md') {
       font-size: 9px;
-    }
-  }
-
-  &__block-tag {
-    font-family: $font-body;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: $red;
-    padding: 3px 10px;
-    border-radius: $radius-sm;
-    background: rgba($red, 0.1);
-    border: 1px solid rgba($red, 0.2);
-
-    @include respond-to('md') {
-      font-size: 8px;
-      padding: 2px 8px;
     }
   }
 
