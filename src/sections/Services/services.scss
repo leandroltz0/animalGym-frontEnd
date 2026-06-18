@@ -23,12 +23,35 @@
     padding-right: 96px;
 
     @include respond-to('md') {
+      text-align: center;
       margin-bottom: 48px;
-      padding-right: 48px;
+      padding-right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     @include respond-to('sm') {
-      padding-right: 24px;
+      margin-bottom: 42px;
+      padding-right: 0;
+    }
+  }
+
+  &__title {
+    @include respond-to('md') {
+      width: min(100%, 360px);
+      margin-inline: auto;
+      font-size: clamp(42px, 11.5vw, 54px);
+      line-height: 0.96;
+      letter-spacing: 2px;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    @include respond-to('sm') {
+      width: min(100%, 250px);
+      font-size: clamp(38px, 12vw, 44px);
+      letter-spacing: 1.6px;
     }
   }
 

@@ -145,7 +145,7 @@ export function Services() {
     <section className="services" id="servicios">
       <div className="services__header">
         <SectionLabel>ENTRENAMIENTOS</SectionLabel>
-        <SectionTitle>NUESTROS SERVICIOS</SectionTitle>
+        <SectionTitle className="services__title">NUESTROS SERVICIOS</SectionTitle>
       </div>
 
       <div className="services__stack-wrapper">

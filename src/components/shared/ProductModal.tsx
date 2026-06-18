@@ -20,14 +20,19 @@ interface ProductModalProps {
 }
 
 export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
-  const [selectedImage, setSelectedImage] = useState(0)
-  const [selectedSize, setSelectedSize] = useState<string | null>(null)
+  const [selection, setSelection] = useState<{
+    productId: number | null
+    imageIndex: number
+    size: string | null
+  }>({
+    productId: null,
+    imageIndex: 0,
+    size: null,
+  })
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
-      setSelectedImage(0)
-      setSelectedSize(null)
     } else {
       document.body.style.overflow = ''
     }
@@ -45,6 +50,9 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
   }, [isOpen, onClose])
 
   if (!isOpen || !product) return null
+
+  const selectedImage = selection.productId === product.id ? selection.imageIndex : 0
+  const selectedSize = selection.productId === product.id ? selection.size : null
 
   const formatPrice = (price: number) => {
     return price.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' })
@@ -76,7 +84,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                   <button
                     key={idx}
                     className={`product-modal__thumb ${idx === selectedImage ? 'product-modal__thumb--active' : ''}`}
-                    onClick={() => setSelectedImage(idx)}
+                    onClick={() => setSelection({ productId: product.id, imageIndex: idx, size: selectedSize })}
                   >
                     <img src={img} alt={`${product.name} ${idx + 1}`} />
                   </button>
@@ -129,7 +137,7 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                     <button
                       key={size}
                       className={`product-modal__size ${selectedSize === size ? 'product-modal__size--active' : ''}`}
-                      onClick={() => setSelectedSize(size)}
+                      onClick={() => setSelection({ productId: product.id, imageIndex: selectedImage, size })}
                     >
                       {size}
                     </button>
@@ -154,31 +162,31 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
               <span>Envío a todo el país</span>
               <span>Stock disponible</span>
             </div>
+          </div>
+        </div>
 
-            <div className="product-modal__reviews-section">
-              <span className="product-modal__reviews-title">OPINIONES</span>
-              <div className="product-modal__reviews-track">
-                {[...productReviews, ...productReviews].map((review, idx) => (
-                  <div key={idx} className="product-modal__review-card">
-                    <div className="product-modal__review-stars">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <svg
-                          key={star}
-                          viewBox="0 0 20 20"
-                          width={12}
-                          height={12}
-                          className={star <= review.rating ? 'product-modal__review-star--filled' : 'product-modal__review-star--empty'}
-                        >
-                          <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.33L10 13.27l-4.77 2.51.91-5.33L2.27 6.63l5.34-.78L10 1z" />
-                        </svg>
-                      ))}
-                    </div>
-                    <p className="product-modal__review-text">"{review.text}"</p>
-                    <span className="product-modal__review-name">{review.name}</span>
-                  </div>
-                ))}
+        <div className="product-modal__reviews-section">
+          <span className="product-modal__reviews-title">OPINIONES</span>
+          <div className="product-modal__reviews-track">
+            {[...productReviews, ...productReviews].map((review, idx) => (
+              <div key={idx} className="product-modal__review-card">
+                <div className="product-modal__review-stars">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg
+                      key={star}
+                      viewBox="0 0 20 20"
+                      width={12}
+                      height={12}
+                      className={star <= review.rating ? 'product-modal__review-star--filled' : 'product-modal__review-star--empty'}
+                    >
+                      <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.33L10 13.27l-4.77 2.51.91-5.33L2.27 6.63l5.34-.78L10 1z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="product-modal__review-text">"{review.text}"</p>
+                <span className="product-modal__review-name">{review.name}</span>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
