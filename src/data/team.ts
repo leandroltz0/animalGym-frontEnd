@@ -39,6 +39,6 @@ export const trainers: Trainer[] = [
     specialties: ['Musculación', 'Hipertrofia'],
     highlight: 'Musculación',
     role: 'Entrenamiento Personal',
-    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e2e?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&q=80',
   },
 ]

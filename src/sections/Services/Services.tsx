@@ -6,6 +6,8 @@ import { SectionLabel, SectionTitle } from '@/components/shared'
 import { useIsMobile } from '@/hooks/useMediaQuery'
 import './services.scss'
 
+const serviceImageFallback = 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80&auto=format'
+
 export function Services() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -160,9 +162,17 @@ export function Services() {
               ref={(el) => { cardsRef.current[idx] = el }}
               className="service-card"
             >
-              <div
+              <img
                 className="service-card__img"
-                style={{ backgroundImage: `url(${service.image})` }}
+                src={service.image}
+                alt={service.name}
+                loading="lazy"
+                onError={(event) => {
+                  const image = event.currentTarget
+                  if (image.src !== serviceImageFallback) {
+                    image.src = serviceImageFallback
+                  }
+                }}
               />
               <div className="service-card__overlay" />
               <div className="service-card__content">

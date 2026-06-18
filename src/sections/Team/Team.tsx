@@ -5,6 +5,8 @@ import { trainers } from '@/data/team'
 import { SectionLabel } from '@/components/shared'
 import './team.scss'
 
+const trainerImageFallback = 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80&auto=format'
+
 export function Team() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
@@ -202,7 +204,18 @@ export function Team() {
           <div className="team__carousel" ref={carouselRef}>
             {duplicated.map((trainer, idx) => (
               <div key={`${trainer.id}-${idx}`} className="team__card">
-                <img className="team__card-img" src={trainer.image} alt={trainer.name} />
+                <img
+                  className="team__card-img"
+                  src={trainer.image}
+                  alt={trainer.name}
+                  loading="lazy"
+                  onError={(event) => {
+                    const image = event.currentTarget
+                    if (image.src !== trainerImageFallback) {
+                      image.src = trainerImageFallback
+                    }
+                  }}
+                />
                 <div className="team__card-overlay" />
                 <div className="team__card-body">
                   <div className="team__card-name">{trainer.name}</div>
