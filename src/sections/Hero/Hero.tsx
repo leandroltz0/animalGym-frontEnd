@@ -5,6 +5,8 @@ import { WHATSAPP_URL } from '@/constants'
 import { SVGFilters } from '@/components/shared/SVGFilters'
 import './hero.scss'
 
+const heroImage = '/photos/trainers-photos/galery-photos/animalgymimagen.jpeg'
+
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
 
@@ -33,7 +35,7 @@ export function Hero() {
       <SVGFilters />
 
       <div className="hero__bg">
-        <div className="hero__bg-img" />
+        <img className="hero__bg-img" src={heroImage} alt="Interior de Mítico Animal Gym" />
         <div className="hero__red-glow" />
         <div className="hero__red-glow-top" />
       </div>

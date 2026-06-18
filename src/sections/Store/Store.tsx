@@ -201,9 +201,11 @@ export function Store() {
                 data-category={product.category}
               >
                 <div className="store__product-image-area" onClick={() => setSelectedProduct(product)}>
-                  <div
-                    className="store__product-image"
-                    style={{ backgroundImage: `url(${product.image})` }}
+                  <img
+                    className={`store__product-image ${product.image.includes('/photos/clothes-photos/') ? 'store__product-image--clothing' : ''}`}
+                    src={product.image}
+                    alt={product.name}
+                    loading="lazy"
                   />
                   {product.originalPrice && (
                     <span className="store__product-badge">

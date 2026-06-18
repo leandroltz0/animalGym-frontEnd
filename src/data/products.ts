@@ -5,7 +5,7 @@ export const storeCategories: StoreCategory[] = [
     id: 'remeras',
     name: 'REMERAS',
     subtitle: 'Más compradas',
-    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&q=80',
+    image: '/photos/clothes-photos/shirt-removebg-preview.png',
     filterMap: 'remeras',
   },
   {
@@ -118,21 +118,18 @@ export const products: Product[] = [
   },
   {
     id: 5,
-    name: 'Pack 2 Remeras Animal Gym',
+    name: 'Shirt Animal Gym',
     category: 'remeras',
-    tag: '★ En tendencia',
-    image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&q=80',
-    price: 45000,
-    originalPrice: 58000,
-    description: 'Pack de 2 remeras Animal Gym con diseños exclusivos. Algodón premium, corte regular.',
+    tag: '★ Nueva',
+    image: '/photos/clothes-photos/shirt-removebg-preview.png',
+    price: 15000,
+    description: 'Shirt negra de Mítico Animal Gym con estampa oficial en la espalda. Cómoda para entrenar o usar todos los días.',
     images: [
-      'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80',
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
-      'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=80',
+      '/photos/clothes-photos/shirt-removebg-preview.png',
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     rating: 4.7,
-    reviews: 95,
+    reviews: 32,
   },
   {
     id: 6,
@@ -153,7 +150,7 @@ export const products: Product[] = [
 export const storeHeroSlides = [
   'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1200&q=80',
   'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=1200&q=80',
-  'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=1200&q=80',
+  '/photos/clothes-photos/shirt-removebg-preview.png',
 ]
 
 export const productFilters = [

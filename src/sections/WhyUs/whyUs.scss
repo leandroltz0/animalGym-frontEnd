@@ -179,18 +179,18 @@
     width: 100%;
     max-width: 320px;
     padding: 18px 24px;
-    background: rgba($dark-gray, 0.5);
+    background: rgba($gray-secondary, 0.72);
     border-radius: 12px;
     cursor: pointer;
     transition: background 0.3s, border-color 0.3s;
-    border: 1.5px solid transparent;
+    border: 1.5px solid rgba($white, 0.06);
     display: flex;
     align-items: center;
     justify-content: center;
 
     &:hover {
-      background: rgba($dark-gray, 0.8);
-      border-color: rgba($white, 0.08);
+      background: rgba($gray-secondary, 0.9);
+      border-color: rgba($white, 0.12);
     }
 
     &--active {
@@ -209,7 +209,7 @@
       z-index: 1;
 
       &:hover {
-        opacity: 0.6 !important;
+        opacity: 0.9 !important;
       }
     }
 
@@ -224,7 +224,7 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba($white, 0.6);
+    color: rgba($white, 0.82);
     transition: color 0.3s;
     text-align: center;
 

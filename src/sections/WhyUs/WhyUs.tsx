@@ -42,7 +42,7 @@ export function WhyUs() {
       gsap.to(item, {
         y: position * 75,
         scale: position === 0 ? 1 : 0.95,
-        opacity: position === 0 ? 1 : 0.4,
+        opacity: position === 0 ? 1 : 0.78,
         duration: 0.5,
         ease: 'power2.out',
       })
