@@ -1,4 +1,4 @@
-import { NAV_LINKS, WHATSAPP_URL, SOCIAL } from '@/constants'
+import { NAV_LINKS, SOCIAL } from '@/constants'
 import './navbar.scss'
 
 interface MobileMenuProps {

@@ -1,4 +1,21 @@
+/**
+ * products.ts
+ *
+ * Datos estáticos de la tienda:
+ * - storeCategories: categorías visibles en la barra de filtros circular
+ * - products:        lista de productos disponibles
+ * - storeHeroSlides: imágenes del banner principal de la tienda
+ * - productFilters:  filtros de la grilla de productos
+ *
+ * Para agregar un producto nuevo, creá un objeto siguiendo la interfaz `Product`
+ * en `src/types/index.ts` y agregalo al array `products`.
+ */
+
 import type { Product, StoreCategory } from '@/types'
+
+// ---------------------------------------------------------------------------
+// Categorías del selector circular (barra de íconos debajo del hero)
+// ---------------------------------------------------------------------------
 
 export const storeCategories: StoreCategory[] = [
   {
@@ -58,14 +75,19 @@ export const storeCategories: StoreCategory[] = [
   },
 ]
 
-const shirtProduct: Product = {
+// ---------------------------------------------------------------------------
+// Productos disponibles para la venta
+// ---------------------------------------------------------------------------
+
+const shirtAnimalGym: Product = {
   id: 1,
   name: 'Shirt Animal Gym',
   category: 'remeras',
   tag: '★ Nueva',
   image: '/photos/clothes/shirt-removebg-preview.avif',
   price: 15000,
-  description: 'Shirt negra de Mítico Animal Gym con estampa oficial en la espalda. Cómoda para entrenar o usar todos los días.',
+  description:
+    'Shirt negra de Mítico Animal Gym con estampa oficial en la espalda. Cómoda para entrenar o usar todos los días.',
   images: ['/photos/clothes/shirt-removebg-preview.avif'],
   sizes: ['S', 'M', 'L', 'XL'],
   rating: 4.7,
@@ -73,12 +95,22 @@ const shirtProduct: Product = {
 }
 
 export const products: Product[] = [
-  shirtProduct,
+  shirtAnimalGym,
 ]
+
+// ---------------------------------------------------------------------------
+// Banner / hero de la tienda (slideshow)
+// Agregar más rutas de imágenes para activar el slider automático.
+// ---------------------------------------------------------------------------
 
 export const storeHeroSlides = [
   '/photos/clothes/c66d8dd2-0136-40d0-831d-87b33d589f4b.jpg',
 ]
+
+// ---------------------------------------------------------------------------
+// Filtros de la grilla de productos
+// Deben coincidir con el campo `category` de cada Product.
+// ---------------------------------------------------------------------------
 
 export const productFilters = [
   'TODOS',
