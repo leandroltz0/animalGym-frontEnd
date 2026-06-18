@@ -14,6 +14,7 @@ export const storeCategories: StoreCategory[] = [
     subtitle: 'Más vendidas',
     image: 'https://images.unsplash.com/photo-1550345332-09e3ac987658?w=200&q=80',
     filterMap: 'proteinas',
+    comingSoon: true,
   },
   {
     id: 'creatina',
@@ -21,6 +22,7 @@ export const storeCategories: StoreCategory[] = [
     subtitle: 'Top elegida',
     image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=200&q=80',
     filterMap: 'creatinas',
+    comingSoon: true,
   },
   {
     id: 'pre-entreno',
@@ -28,6 +30,7 @@ export const storeCategories: StoreCategory[] = [
     subtitle: 'Energía al máximo',
     image: 'https://images.unsplash.com/photo-1546483875-ad9014c88eba?w=200&q=80',
     filterMap: 'suplementos',
+    comingSoon: true,
   },
   {
     id: 'shakers',
@@ -35,6 +38,7 @@ export const storeCategories: StoreCategory[] = [
     subtitle: 'Imprescindibles',
     image: 'https://images.unsplash.com/photo-1622484212850-eb596d769edc?w=200&q=80',
     filterMap: 'accesorios',
+    comingSoon: true,
   },
   {
     id: 'colageno',
@@ -42,6 +46,7 @@ export const storeCategories: StoreCategory[] = [
     subtitle: 'Recuperación total',
     image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200&q=80',
     filterMap: 'suplementos',
+    comingSoon: true,
   },
   {
     id: 'accesorios',
@@ -49,6 +54,7 @@ export const storeCategories: StoreCategory[] = [
     subtitle: 'Para tu rutina',
     image: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=200&q=80',
     filterMap: 'accesorios',
+    comingSoon: true,
   },
 ]
 

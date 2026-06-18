@@ -143,15 +143,24 @@ export function Store() {
         {storeCategories.map((cat) => (
           <div
             key={cat.id}
-            className="store__category"
-            onClick={() => handleCategoryClick(cat.filterMap)}
+            className={`store__category ${cat.comingSoon ? 'store__category--coming-soon' : ''}`}
+            onClick={() => !cat.comingSoon && handleCategoryClick(cat.filterMap)}
           >
-            <div
-              className="store__category-img"
-              style={{ backgroundImage: `url(${cat.image})` }}
-            />
+            <div className="store__category-img-wrap">
+              <div
+                className="store__category-img"
+                style={!cat.comingSoon ? { backgroundImage: `url(${cat.image})` } : {}}
+              />
+              {cat.comingSoon && (
+                <div className="store__category-soon-overlay">
+                  <span>PRÓX.</span>
+                </div>
+              )}
+            </div>
             <span className="store__category-name">{cat.name}</span>
-            <span className="store__category-sub">{cat.subtitle}</span>
+            <span className="store__category-sub">
+              {cat.comingSoon ? 'Próximamente' : cat.subtitle}
+            </span>
           </div>
         ))}
       </div>
@@ -259,6 +268,24 @@ export function Store() {
               </div>
             )
           })}
+
+          {/* Coming Soon cards */}
+          {[1, 2].map((n) => (
+            <div key={`coming-soon-${n}`} className="store__product-card store__product-card--coming-soon">
+              <div className="store__product-image-area store__coming-soon-image-area">
+                <div className="store__coming-soon-icon">?</div>
+              </div>
+              <div className="store__product-body">
+                <h4 className="store__product-name store__coming-soon-name">Próximamente</h4>
+                <p className="store__product-description">
+                  Nuevo producto en camino. ¡Seguinos para enterarte antes que nadie!
+                </p>
+                <div className="store__product-bottom">
+                  <div className="store__coming-soon-badge">COMING SOON</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 

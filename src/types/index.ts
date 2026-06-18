@@ -42,6 +42,7 @@ export interface StoreCategory {
   subtitle: string
   image: string
   filterMap: string
+  comingSoon?: boolean
 }
 
 export interface GalleryItem {

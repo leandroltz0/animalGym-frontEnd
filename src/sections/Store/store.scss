@@ -316,17 +316,59 @@
   }
 
   &__category-img {
-    width: 90px;
-    height: 90px;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     border: 2px solid rgba($white, 0.12);
+    background-color: rgba($white, 0.04);
     background-size: cover;
     background-position: center;
     transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s $ease-smooth;
+  }
+
+  &__category--coming-soon {
+    opacity: 0.5;
+    cursor: default;
+
+    &:hover {
+      transform: none;
+
+      .store__category-img {
+        border-color: rgba($white, 0.12);
+        box-shadow: none;
+        transform: none;
+      }
+    }
+  }
+
+  &__category-img-wrap {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
 
     @include respond-to('md') {
       width: 72px;
       height: 72px;
+    }
+  }
+
+  &__category-soon-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba($black, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      font-family: $font-body;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: rgba($white, 0.8);
+      text-transform: uppercase;
     }
   }
 
@@ -737,5 +779,57 @@
       padding: 7px 9px;
       font-size: 8px;
     }
+  }
+
+  &__product-card--coming-soon {
+    opacity: 0.6;
+    cursor: default;
+
+    &:hover {
+      transform: none;
+      border-color: rgba($white, 0.06);
+      box-shadow: none;
+    }
+  }
+
+  &__coming-soon-image-area {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba($white, 0.02) 0px,
+      rgba($white, 0.02) 8px,
+      transparent 8px,
+      transparent 16px
+    ) !important;
+    border: 2px dashed rgba($white, 0.1);
+    cursor: default;
+  }
+
+  &__coming-soon-icon {
+    font-family: $font-heading;
+    font-size: 64px;
+    color: rgba($white, 0.15);
+    line-height: 1;
+    user-select: none;
+  }
+
+  &__coming-soon-name {
+    color: rgba($white, 0.4) !important;
+  }
+
+  &__coming-soon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-body;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba($white, 0.4);
+    border: 1px dashed rgba($white, 0.2);
+    padding: 6px 14px;
+    border-radius: 999px;
+    width: fit-content;
+    margin-top: 8px;
   }
 }
