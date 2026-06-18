@@ -170,7 +170,7 @@
 
     @include respond-to('md') {
       order: 3;
-      height: 210px;
+      height: 240px;
     }
   }
 
@@ -214,7 +214,7 @@
     }
 
     @include respond-to('md') {
-      padding: 14px 20px;
+      padding: 22px 20px;
     }
   }
 
