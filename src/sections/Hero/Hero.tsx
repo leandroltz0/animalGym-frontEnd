@@ -5,7 +5,7 @@ import { WHATSAPP_URL } from '@/constants'
 import { SVGFilters } from '@/components/shared/SVGFilters'
 import './hero.scss'
 
-const heroImage = '/photos/trainers-photos/galery-photos/animalgymimagen.jpeg'
+const heroVideo = '/videos/heroVideo.mp4'
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -35,7 +35,16 @@ export function Hero() {
       <SVGFilters />
 
       <div className="hero__bg">
-        <img className="hero__bg-img" src={heroImage} alt="Interior de Mítico Animal Gym" />
+      <video 
+  className="hero__bg-img" 
+  controls={false} // Opcional: si es un fondo, generalmente no lleva controles
+  autoPlay 
+  loop 
+  muted
+>
+  <source src={heroVideo} type="video/mp4" />
+  Tu navegador no soporta el elemento de video.
+</video>
         <div className="hero__red-glow" />
         <div className="hero__red-glow-top" />
       </div>
