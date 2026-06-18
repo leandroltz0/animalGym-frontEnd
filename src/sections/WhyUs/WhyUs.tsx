@@ -6,7 +6,7 @@ import { SectionLabel, SectionTitle } from '@/components/shared'
 import './whyUs.scss'
 
 export function WhyUs() {
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(1)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descRef = useRef<HTMLParagraphElement>(null)
   const navRef = useRef<HTMLDivElement>(null)
@@ -59,10 +59,10 @@ export function WhyUs() {
       <div className="why-us__content">
         <div className="why-us__text">
           <h3 className="why-us__text-title" ref={titleRef}>
-            {whyUsItems[0].title}
+            {whyUsItems[1].title}
           </h3>
           <p className="why-us__text-desc" ref={descRef}>
-            {whyUsItems[0].description}
+            {whyUsItems[1].description}
           </p>
         </div>
 
