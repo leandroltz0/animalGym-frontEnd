@@ -24,7 +24,7 @@ export function Footer() {
               </div>
             </div>
             <div className="footer__tagline">
-              Entrená como una bestia.<br />
+              Entrená disciplinadamente.<br />
               Construí tu <span className="accent">mejor versión</span>.
             </div>
             <p className="footer__desc">
