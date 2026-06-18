@@ -35,16 +35,21 @@ export function Hero() {
       <SVGFilters />
 
       <div className="hero__bg">
-      <video 
-  className="hero__bg-img" 
-  controls={false} // Opcional: si es un fondo, generalmente no lleva controles
-  autoPlay 
-  loop 
-  muted
->
-  <source src={heroVideo} type="video/mp4" />
-  Tu navegador no soporta el elemento de video.
-</video>
+      {/* 
+        iOS Safari requiere `playsInline` para reproducción inline sin abrir el reproductor nativo.
+        Sin este atributo, el video en iPhone se abre en pantalla completa y no autoreproducen.
+        `muted` es además requisito de todos los navegadores modernos para autoplay.
+      */}
+      <video
+        className="hero__bg-img"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+      >
+        <source src={heroVideo} type="video/mp4" />
+      </video>
         <div className="hero__red-glow" />
         <div className="hero__red-glow-top" />
       </div>

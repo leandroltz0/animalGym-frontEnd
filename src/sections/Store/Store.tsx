@@ -202,7 +202,7 @@ export function Store() {
               >
                 <div className="store__product-image-area" onClick={() => setSelectedProduct(product)}>
                   <img
-                    className={`store__product-image ${product.image.includes('/photos/clothes-photos/') ? 'store__product-image--clothing' : ''}`}
+                    className={`store__product-image ${product.image.includes('/photos/clothes/') ? 'store__product-image--clothing' : ''}`}
                     src={product.image}
                     alt={product.name}
                     loading="lazy"
