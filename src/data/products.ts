@@ -5,7 +5,7 @@ export const storeCategories: StoreCategory[] = [
     id: 'remeras',
     name: 'REMERAS',
     subtitle: 'Más compradas',
-    image: '/photos/clothes/shirt-removebg-preview.webp',
+    image: '/photos/clothes/shirt-removebg-preview.avif',
     filterMap: 'remeras',
   },
   {
@@ -57,10 +57,10 @@ const shirtProduct: Product = {
   name: 'Shirt Animal Gym',
   category: 'remeras',
   tag: '★ Nueva',
-  image: '/photos/clothes/shirt-removebg-preview.webp',
+  image: '/photos/clothes/shirt-removebg-preview.avif',
   price: 15000,
   description: 'Shirt negra de Mítico Animal Gym con estampa oficial en la espalda. Cómoda para entrenar o usar todos los días.',
-  images: ['/photos/clothes/shirt-removebg-preview.webp'],
+  images: ['/photos/clothes/shirt-removebg-preview.avif'],
   sizes: ['S', 'M', 'L', 'XL'],
   rating: 4.7,
   reviews: 32,
@@ -68,15 +68,10 @@ const shirtProduct: Product = {
 
 export const products: Product[] = [
   shirtProduct,
-  { ...shirtProduct, id: 2 },
-  { ...shirtProduct, id: 3 },
-  { ...shirtProduct, id: 4 },
 ]
 
 export const storeHeroSlides = [
-  'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1200&q=80',
-  'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=1200&q=80',
-  'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=1200&q=80',
+  '/photos/clothes/c66d8dd2-0136-40d0-831d-87b33d589f4b.jpg',
 ]
 
 export const productFilters = [
