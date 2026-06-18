@@ -38,7 +38,7 @@ export const galleryItems: GalleryItem[] = [
     image: '/photos/gallery/image4.avif',
     alt: 'Comunidad Animal',
     category: 'COMUNIDAD',
-    title: 'LA MANADA',
+    title: 'LA COMUNIDAD',
     description: 'Viví el entrenamiento acompañado por personas que comparten tus objetivos.',
   },
   {
