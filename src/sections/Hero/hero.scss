@@ -41,6 +41,24 @@
     filter: brightness(0.35) contrast(1.1) saturate(0.7);
   }
 
+  // Desktop: muestra imagen, oculta video
+  &__bg-desktop {
+    display: block;
+
+    @include respond-to('md') {
+      display: none;
+    }
+  }
+
+  // Mobile: oculta imagen, muestra video
+  &__bg-mobile {
+    display: none;
+
+    @include respond-to('md') {
+      display: block;
+    }
+  }
+
   &__red-glow {
     position: absolute;
     top: 5%;

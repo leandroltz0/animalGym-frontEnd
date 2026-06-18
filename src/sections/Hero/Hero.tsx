@@ -6,6 +6,7 @@ import { SVGFilters } from '@/components/shared/SVGFilters'
 import './hero.scss'
 
 const heroVideo = '/videos/heroVideo.mp4'
+const heroDesktopImage = '/photos/gallery/hero-desktop.jpg'
 
 export function Hero() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -35,21 +36,32 @@ export function Hero() {
       <SVGFilters />
 
       <div className="hero__bg">
-      {/* 
-        iOS Safari requiere `playsInline` para reproducción inline sin abrir el reproductor nativo.
-        Sin este atributo, el video en iPhone se abre en pantalla completa y no autoreproducen.
-        `muted` es además requisito de todos los navegadores modernos para autoplay.
-      */}
-      <video
-        className="hero__bg-img"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-      >
-        <source src={heroVideo} type="video/mp4" />
-      </video>
+        {/* 
+          Desktop: imagen estática de galería (mejor rendimiento en pantallas grandes).
+          Mobile: video autoplay inline (portrait nativo, mejor experiencia).
+          El switching es puramente CSS con las clases hero__bg-desktop / hero__bg-mobile.
+        */}
+
+        {/* Imagen para desktop */}
+        <img
+          className="hero__bg-img hero__bg-desktop"
+          src={heroDesktopImage}
+          alt="Animal Gym"
+          loading="eager"
+        />
+
+        {/* Video para mobile */}
+        <video
+          className="hero__bg-img hero__bg-mobile"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+
         <div className="hero__red-glow" />
         <div className="hero__red-glow-top" />
       </div>
