@@ -53,23 +53,17 @@ export function Services() {
           }
         } else {
           // Modo desktop: abanico fijo, solo cambia z-index/scale/opacity
-          const x = idx * 155
+          const x = idx * 170
 
-          // Calcular distancia a la card activa
-          let distance: number
-          if (idx === activeIndex) {
-            distance = 0
-          } else if (idx > activeIndex) {
-            distance = idx - activeIndex
-          } else {
-            // Cards que ya pasaron, van al fondo
-            distance = total - activeIndex + idx
-          }
+          // Distancia física a la card activa
+          const distance = Math.abs(idx - activeIndex)
 
           const isActive = distance === 0
-          const zIndex = isActive ? total : total - distance
-          const scale = isActive ? 1 : Math.max(0.85, 1 - distance * 0.05)
-          const opacity = isActive ? 1 : Math.max(0.4, 1 - distance * 0.15)
+          const isAdjacent = distance === 1
+
+          const zIndex = total - distance
+          const scale = isActive ? 1 : (isAdjacent ? 0.95 : 0.85)
+          const opacity = 1
 
           if (animate) {
             gsap.to(card, {
