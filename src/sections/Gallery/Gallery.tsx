@@ -110,9 +110,9 @@ export function Gallery() {
     <section className="gallery" id="galeria" ref={sectionRef}>
       <div className="gallery__inner">
         <div className="gallery__header">
-          <SectionLabel>GALERÍA ANIMAL</SectionLabel>
+          <SectionLabel>GALERÍA</SectionLabel>
           <h2 className="gallery__title">
-            VIVÍ LA EXPERIENCIA <span className="accent">ANIMAL</span>
+            VIVÍ LA EXPERIENCIA <span className="accent">deportiva</span>
           </h2>
           <p className="gallery__subtitle">
             Conocé el lugar donde la disciplina, la comunidad y el progreso forman parte del día a día.

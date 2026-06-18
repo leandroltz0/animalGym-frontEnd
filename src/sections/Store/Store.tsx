@@ -160,7 +160,7 @@ export function Store() {
         <div className="store__products-header">
           <div className="store__products-header-left">
             <div className="store__products-title-group">
-              <SectionLabel>TIENDA ANIMAL</SectionLabel>
+              <SectionLabel>TIENDA</SectionLabel>
               <h3 className="store__products-title">
                 PRODUCTOS<br />
                 DESTACADOS

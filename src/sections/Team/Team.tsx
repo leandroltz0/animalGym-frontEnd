@@ -184,10 +184,10 @@ export function Team() {
       <div className="team__inner">
         <div className="team__header">
           <div className="team__header-text">
-            <SectionLabel>EL EQUIPO ANIMAL</SectionLabel>
+            <SectionLabel>EL EQUIPO PROFESIONAL</SectionLabel>
             <h2 className="team__title">CONOCÉ A TUS ENTRENADORES</h2>
             <p className="team__desc">
-              Profesionales comprometidos con acompañarte en cada paso de tu transformación.
+              Profesionales comprometidos con acompañarte en tu progreso, cada paso mas cerca de tu transformación.
             </p>
           </div>
           <div className="team__nav">
