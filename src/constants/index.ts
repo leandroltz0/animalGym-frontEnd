@@ -29,4 +29,4 @@ export const MAP_EMBED_URL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m
 
 export const MAP_DIRECTIONS_URL = 'https://maps.google.com/?q=25+de+Mayo+14+Paso+del+Rey+Buenos+Aires'
 
-export const LOGO_URL = '/icon.png'
+export const LOGO_URL = '/icons/icon.png'
