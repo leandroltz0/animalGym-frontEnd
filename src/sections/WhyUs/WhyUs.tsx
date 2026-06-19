@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
-import { Play } from 'lucide-react'
+
 import { whyUsItems } from '@/data/whyUs'
 import { SectionLabel, SectionTitle } from '@/components/shared'
 import './whyUs.scss'
@@ -75,12 +75,6 @@ export function WhyUs() {
             />
           ))}
           <div className="why-us__image-overlay" />
-          <div className="why-us__image-play">
-            <div className="why-us__image-play-circle">
-              <Play size={24} fill="currentColor" />
-            </div>
-            <span className="why-us__image-play-text">VER VIDEO</span>
-          </div>
         </div>
 
         <div className="why-us__nav" ref={navRef}>
