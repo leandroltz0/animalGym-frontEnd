@@ -270,7 +270,7 @@ export function Store() {
           })}
 
           {/* Coming Soon cards */}
-          {[1, 2].map((n) => (
+          {[1, 2, 3].map((n) => (
             <div key={`coming-soon-${n}`} className="store__product-card store__product-card--coming-soon">
               <div className="store__product-image-area store__coming-soon-image-area">
                 <div className="store__coming-soon-icon">?</div>
@@ -278,13 +278,14 @@ export function Store() {
               <div className="store__product-body">
                 <h4 className="store__product-name store__coming-soon-name">Próximamente</h4>
                 <p className="store__product-description">
-                  Nuevo producto en camino. ¡Seguinos para enterarte antes que nadie!
+                  Nuevo producto en camino. 
                 </p>
                 <div className="store__product-bottom">
-                  <div className="store__coming-soon-badge">COMING SOON</div>
+                  <div className="store__coming-soon-badge">PROXIMAMENTE</div>
                 </div>
               </div>
             </div>
+            
           ))}
         </div>
       </div>
