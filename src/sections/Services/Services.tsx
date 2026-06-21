@@ -53,7 +53,7 @@ export function Services() {
           }
         } else {
           // Modo desktop: abanico fijo, solo cambia z-index/scale/opacity
-          const x = idx * 170
+          const x = idx * 220
 
           // Distancia física a la card activa
           const distance = Math.abs(idx - activeIndex)

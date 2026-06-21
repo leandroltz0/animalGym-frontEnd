@@ -13,9 +13,9 @@
 // Contacto
 // ---------------------------------------------------------------------------
 
-export const WHATSAPP_NUMBER = '5491131920565'
+export const WHATSAPP_NUMBER = '5491121589890'
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`
-export const PHONE_DISPLAY = '+54 9 11 3192-0565'
+export const PHONE_DISPLAY = '+54 9 11 2158-9890'
 export const ADDRESS = '25 de Mayo 14'
 export const ADDRESS_FULL = '25 de Mayo 14, Paso del Rey, Buenos Aires'
 export const CITY = 'Paso del Rey, Buenos Aires'
@@ -34,7 +34,7 @@ export const SCHEDULE = {
 // ---------------------------------------------------------------------------
 
 export const SOCIAL = {
-  instagram: 'https://instagram.com/miticoanimalgym',
+  instagram: 'https://www.instagram.com/mitico.animal.gym/',
   tiktok: 'https://tiktok.com/@miticoanimalgym',
   whatsapp: WHATSAPP_URL,
 }

@@ -5,7 +5,7 @@ export const services: Service[] = [
     id: 1,
     name: 'POWERLIFTING',
     description: 'Fuerza pura. Sentadilla, press de banca y peso muerto con programación personalizada para cada atleta.',
-    image: '/photos/trainers/section-services/powerlifitng.avif',
+    image: '/photos/trainers/section-services/powerlifting.avif',
   },
   {
     id: 2,
@@ -27,20 +27,14 @@ export const services: Service[] = [
   },
   {
     id: 5,
-    name: 'GAP',
-    description: 'Glúteos, abdomen y piernas. Tonificación focalizada de alta intensidad.',
-    image: '/photos/trainers/section-services/GAP.avif',
-  },
-  {
-    id: 6,
     name: 'FULL BODY',
     description: 'Cuerpo completo. Cada músculo trabaja en sesiones dinámicas y progresivas.',
     image: '/photos/trainers/section-services/fullbody.avif',
   },
   {
-    id: 7,
+    id: 6,
     name: 'PERSONAL TRAINER',
     description: 'Uno a uno. Plan completamente personalizado para tu deporte y tus objetivos.',
-    image: '/photos/trainers/section-services/personalTrainer.avif',
+    image: '/photos/trainers/section-services/personal-trainer.avif',
   },
 ]
