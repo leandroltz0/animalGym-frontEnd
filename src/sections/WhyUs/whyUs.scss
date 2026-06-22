@@ -8,8 +8,14 @@
   flex-direction: column;
   align-items: center;
 
+  @include respond-to('lg') {
+    padding: 80px 32px 40px;
+    min-height: 0 !important;
+  }
+
   @include respond-to('md') {
-    padding: 80px 20px 60px;
+    padding: 80px 20px 40px;
+    min-height: 0 !important;
   }
 
   &__header {
@@ -21,7 +27,7 @@
     width: 100%;
 
     @include respond-to('md') {
-      margin-bottom: 48px;
+      margin-bottom: 24px;
     }
   }
 
@@ -36,7 +42,9 @@
     align-items: center;
 
     @include respond-to('lg') {
-      gap: 48px;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      max-width: 600px;
     }
 
     @include respond-to('md') {
@@ -49,6 +57,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @include respond-to('lg') {
+      order: 1;
+    }
 
     @include respond-to('md') {
       order: 1;
@@ -88,6 +100,11 @@
     border-radius: 24px;
     overflow: hidden;
     background: $dark-gray;
+
+    @include respond-to('lg') {
+      order: 2;
+      aspect-ratio: 16/9;
+    }
 
     @include respond-to('md') {
       order: 2;
@@ -161,24 +178,29 @@
 
   &__nav {
     position: relative;
-    height: 220px;
+    height: 290px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
+
+    @include respond-to('lg') {
+      order: 3;
+      height: 260px;
+    }
 
     @include respond-to('md') {
       order: 3;
-      height: 240px;
+      height: 260px;
     }
   }
 
   &__nav-item {
     position: absolute;
     width: 100%;
-    max-width: 320px;
-    padding: 18px 24px;
+    max-width: 368px;
+    padding: 26px 24px;
     background: rgba($gray-secondary, 0.72);
     border-radius: 12px;
     cursor: pointer;
@@ -214,7 +236,7 @@
     }
 
     @include respond-to('md') {
-      padding: 22px 20px;
+      padding: 26px 20px;
     }
   }
 

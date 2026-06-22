@@ -24,69 +24,33 @@ export function Services() {
 
     const updatePositions = (animate = false) => {
       cards.forEach((card, idx) => {
-        if (isMobile) {
-          // Modo mobile/tablet: desplazamiento horizontal (lógica original)
-          const position = (idx - activeIndex + total) % total
-          const isActive = position === 0
-          const offset = position * 155
-          const scale = isActive ? 1 : Math.max(0.85, 1 - position * 0.05)
-          const zIndex = total - position
+        const position = (idx - activeIndex + total) % total
+        const isActive = position === 0
+        const offset = position * (isMobile ? 155 : 240)
+        const scale = isActive ? 1 : Math.max(0.85, 1 - position * 0.05)
+        const zIndex = total - position
 
-          if (animate) {
-            gsap.to(card, {
-              x: offset,
-              y: isActive ? -32 : 0,
-              scale,
-              opacity: 1,
-              zIndex,
-              duration: 0.65,
-              ease: 'power4.out',
-            })
-          } else {
-            gsap.set(card, {
-              x: offset,
-              y: isActive ? -32 : 0,
-              scale,
-              opacity: 1,
-              zIndex,
-            })
-          }
+        if (animate) {
+          gsap.to(card, {
+            x: offset,
+            y: isActive ? -32 : 0,
+            scale,
+            opacity: 1,
+            zIndex,
+            duration: 0.65,
+            ease: 'power4.out',
+          })
         } else {
-          // Modo desktop: abanico fijo, solo cambia z-index/scale/opacity
-          const x = idx * 220
-
-          // Distancia física a la card activa
-          const distance = Math.abs(idx - activeIndex)
-
-          const isActive = distance === 0
-          const isAdjacent = distance === 1
-
-          const zIndex = total - distance
-          const scale = isActive ? 1 : (isAdjacent ? 0.95 : 0.85)
-          const opacity = 1
-
-          if (animate) {
-            gsap.to(card, {
-              x,
-              y: 0,
-              scale,
-              opacity,
-              zIndex,
-              duration: isActive ? 0.5 : 0.4,
-              ease: isActive ? 'power3.out' : 'power2.inOut',
-            })
-          } else {
-            gsap.set(card, {
-              x,
-              y: 0,
-              scale,
-              opacity,
-              zIndex,
-            })
-          }
+          gsap.set(card, {
+            x: offset,
+            y: isActive ? -32 : 0,
+            scale,
+            opacity: 1,
+            zIndex,
+          })
         }
 
-        card.classList.toggle('service-card--active', isMobile ? (idx === activeIndex) : (idx === activeIndex))
+        card.classList.toggle('service-card--active', idx === activeIndex)
       })
     }
 

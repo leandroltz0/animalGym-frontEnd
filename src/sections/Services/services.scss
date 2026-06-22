@@ -60,11 +60,11 @@
     align-items: center;
     justify-content: flex-start;
     z-index: 5;
-    padding-left: 112px;
+    padding-left: 144px;
 
     @include respond-to('md') {
       justify-content: center;
-      padding-left: 0;
+      padding-left: 3rem;
       padding-right: 0;
     }
 
@@ -76,7 +76,7 @@
 
   &__stack {
     position: relative;
-    width: clamp(300px, 45vw, 480px);
+    width: clamp(340px, 55vw, 620px);
     height: clamp(480px, 70vh, 680px);
     flex-shrink: 0;
   }
@@ -217,7 +217,7 @@
     }
 
     @include respond-to('md') {
-      object-position: center top;
+      object-position: center;
     }
   }
 

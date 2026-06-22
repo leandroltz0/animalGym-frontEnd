@@ -40,7 +40,7 @@ export function WhyUs() {
     items.forEach((item, idx) => {
       const position = idx - activeIndex
       gsap.to(item, {
-        y: position * 75,
+        y: position * 84,
         scale: position === 0 ? 1 : 0.95,
         opacity: position === 0 ? 1 : 0.78,
         duration: 0.5,
