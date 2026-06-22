@@ -80,6 +80,11 @@
     width: clamp(340px, 55vw, 620px);
     height: clamp(480px, 70vh, 680px);
     flex-shrink: 0;
+
+    @include respond-to('xxl') {
+      width: clamp(308px, 55vw, 588px); // 2rem less than default
+      height: clamp(360px, 58vh, 540px);
+    }
   }
 
   &__nav {
