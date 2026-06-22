@@ -5,7 +5,7 @@ export const trainers: Trainer[] = [
     id: 1,
     name: 'KIKE',
     specialties: ['Powerlifting', 'Musculación'],
-    highlight: 'Powerlifting',
+    highlight: 'Musculacion',
     role: 'Entrenador',
     image: '/photos/team-trainers/kike-trainer.avif',
   },
