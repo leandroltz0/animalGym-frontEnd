@@ -19,10 +19,10 @@ export const trainers: Trainer[] = [
   },
   {
     id: 3,
-    name: 'ENTRENADOR 3',
-    specialties: [],
-    highlight: '',
-    role: '',
+    name: 'JENNIFER',
+    specialties: ["Spinning", "Musculacion"],
+    highlight: 'Spinning',
+    role: 'Entrenadora',
     image: '/photos/team-trainers/WhatsApp Image 2026-06-19 at 6.07.43 PM (2).avif',
   },
 ]
