@@ -3,6 +3,7 @@
 
 .services {
   @include section-base;
+  overflow-x: clip; // will-change: transform on cards escapes overflow: hidden; clip hard-cuts regardless of compositing layer
   padding: 100px 24px 80px;
   display: flex;
   flex-direction: column;

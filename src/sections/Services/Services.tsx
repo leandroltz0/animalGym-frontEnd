@@ -26,7 +26,8 @@ export function Services() {
       cards.forEach((card, idx) => {
         const position = (idx - activeIndex + total) % total
         const isActive = position === 0
-        const offset = position * (isMobile ? 125 : 190)
+        const desktopOffset = window.innerWidth <= 1600 ? 185 : 190
+        const offset = position * (isMobile ? 125 : desktopOffset)
         const scale = isActive ? 1 : Math.max(0.85, 1 - position * 0.05)
         const zIndex = total - position
 
